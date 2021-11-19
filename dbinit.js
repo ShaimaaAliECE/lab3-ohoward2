@@ -1,7 +1,8 @@
-//this is where i will initialize the database
+//This is where I will initialize the database
 
 const mysql = require('mysql');
-
+//Create the db connection
+//Contains all the info needed to connect to the database
 const conn = mysql.createConnection({
     host:'35.224.29.198',
     user: 'root',
@@ -11,7 +12,7 @@ const conn = mysql.createConnection({
 
 conn.connect();
 
-//if there are tables in place already then reset them
+//Reset any tables that are already in place
 conn.query(`Drop Table Time`,
                 (err,rows,fields) => {
                     if (err)

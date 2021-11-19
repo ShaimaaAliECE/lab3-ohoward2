@@ -1,11 +1,12 @@
 const mysql = require('mysql');
-
+//Function for new connections
 function newConnection()
 {
+    //All the info needed to connect to the database server
     let conn = mysql.createConnection({
-        host:'34.134.27.235',
+        host:'35.224.29.198',
         user: 'root',
-        password:'mypassword',
+        password:'root',
         database:'usersDB'
     });
     return conn;
