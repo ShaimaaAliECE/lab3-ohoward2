@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-// This object is for creating new db connections
+//this object can be used to create new db connections 
 const newConnection = require('./DBConnection');
 
 const app = express();
@@ -13,33 +13,28 @@ app.get('/', (req, res) => {
 app.use(express.urlencoded({
   extended: true
 }))
-//Gets the guest sign-in page
+
 app.get('/guest', (req, res) => {
   res.sendFile('/static/guest.html', { root: __dirname })
 })
-//Gets the admin page
+
 app.get('/admin', (req, res) => {
   res.sendFile('/static/admin.html', { root: __dirname })
 })
-//Posts the login info
+
 app.post('/login', (req, res) => {
   let userName = req.body.usr;
   let password = req.body.pwd;
-  //Sets message to "Access denied"
   let message = "Access denied";
-//If the userName and password entered are correct then the user is sent a different page
-//And the message "Welcome" is displayed on this other page
+
   if (userName == 'admin' && password == '123') {
     message = "Welcome";
     res.sendFile('/frontend/admin.html', { root: __dirname })
   }
-  //If the incorrect userName and password are entered,
-  //Then the message sent to the user is "Access denied"
 
-  //Sends the message
   res.send(message)
 })
-//Gets the login info
+
 app.get('/login', (req, res) => {
   let userName = req.body.usr;
   let password = req.body.pwd;
@@ -52,7 +47,7 @@ app.get('/login', (req, res) => {
 
   res.send(message)
 })
-//Gets the info for adding a user
+
 app.get('/add-user', (req,res) => {
   let conn = newConnection();
   conn.connect();
@@ -64,7 +59,7 @@ app.get('/add-user', (req,res) => {
 
   conn.end();
 })
-//Get the info for adding new times
+
 app.get('/add-times', (req,res) => {
   let conn = newConnection();
   conn.connect();
@@ -83,5 +78,6 @@ app.get('/add-times', (req,res) => {
 
 app.use(express.static('frontend'))
 
-//As specified in the project instructions, make the app listen to port 80
+// make the app listen to port 80 as specified in the project instructions
+// part 6 of the development section adresses this 
 app.listen(80);
