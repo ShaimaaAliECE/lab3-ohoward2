@@ -1,4 +1,4 @@
-const newConnection = require('./DBConnection');
+const newConnection = require('./DBconnection');
 
 const conn = newConnection();
 //Query to select all the times
